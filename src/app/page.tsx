@@ -1,101 +1,147 @@
-import Image from "next/image";
+"use client";
+
+import Hls from "hls.js";
+import { useEffect, useRef } from "react";
+import { Paper, Avatar, Button, Text, Anchor, ThemeIcon } from "@mantine/core";
+import {
+  IconBook,
+  IconQuestionMark,
+  IconStethoscope,
+} from "@tabler/icons-react";
+
+import classes from "./page.module.css";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  useEffect(() => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      const hls = new Hls();
+
+      hls.loadSource("/logs/record_1/record_1.m3u8");
+      hls.attachMedia(video);
+    }
+  }, []);
+
+  return (
+    <div className="flex flex-col gap-3 items-center py-4">
+      <Paper radius="md" withBorder p="lg" bg="var(--mantine-primary-color)">
+        <Avatar src="/avatar.jpeg" size={120} radius={120} mx="auto" />
+
+        <Text ta="center" fz="lg" fw={500} mt="md">
+          Edward Duong
+        </Text>
+        <Text ta="center" c="dimmed" fz="sm">
+          Senior Full-Stack Engineer
+        </Text>
+        <Text ta="center" c="dimmed" fz="sm">
+          <Anchor href="mailto:edwardduong.work@gmail.com" target="_blank">
+            edwardduong.work@gmail.com
+          </Anchor>
+        </Text>
+
+        <Button
+          variant="default"
+          fullWidth
+          mt="md"
+          onClick={() =>
+            window.open("https://www.linkedin.com/in/edward-duong/", "_blank")
+          }
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Find me here
+        </Button>
+      </Paper>
+      <Paper
+        withBorder
+        radius="md"
+        className={`${classes.card} ${classes.effect}`}
+      >
+        <ThemeIcon
+          size="xl"
+          radius="md"
+          variant="gradient"
+          gradient={{ deg: 0, from: "blue", to: "green" }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <IconQuestionMark size={28} stroke={1.5} />
+        </ThemeIcon>
+        <Text size="xl" fw={500} mt="md">
+          Where am I?
+        </Text>
+        <pre className="max-w-[800px] text-pretty">{`In the world of code, we are always in search of our next destination. But where? For me, it's through the challenges we solve, the systems we build, and the impact we create that we truly understand our place in this ever-evolving tech landscape.`}</pre>
+      </Paper>
+      <Paper
+        withBorder
+        radius="md"
+        className={`${classes.card} ${classes.effect}`}
+      >
+        <ThemeIcon
+          size="xl"
+          radius="md"
+          variant="gradient"
+          gradient={{ deg: 0, from: "blue", to: "green" }}
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <IconBook size={28} stroke={1.5} />
+        </ThemeIcon>
+        <Text size="xl" fw={500} mt="md">
+          What is next?
+        </Text>
+        <pre className="max-w-[800px] text-pretty">{`The future of convenience lies in the hands of those who dare to shape intelligent machines. By learning AI, we unlock the power to create robots that will not only lighten our workload but revolutionize the way we live, one task at a time.`}</pre>
+      </Paper>
+      <Paper withBorder radius="md" className={classes.card}>
+        <ThemeIcon
+          size="xl"
+          radius="md"
+          variant="gradient"
+          gradient={{ deg: 0, from: "red", to: "orange" }}
+        >
+          <IconStethoscope size={28} stroke={1.5} />
+        </ThemeIcon>
+        <Text size="xl" fw={500} mt="md">
+          Health Buddy
+        </Text>
+        <pre className="max-w-[800px] text-pretty">{`Empowering health through technology: Health Buddy bridges the gap between symptoms and care, providing users with a smart virtual agent that understands their needs and helps them take the next step toward wellness.`}</pre>
+        <Text mt="md">Manage hospital:</Text>
+        <Anchor
+          href="https://github.com/edwardduong71311/hb-hospital-mgmt"
+          target="_blank"
+        >
+          https://github.com/edwardduong71311/hb-hospital-mgmt
+        </Anchor>
+        <Text mt="md">Manage chatbot knowledge base:</Text>
+        <Anchor
+          href="https://github.com/edwardduong71311/hb-knowledge-base"
+          target="_blank"
+        >
+          https://github.com/edwardduong71311/hb-knowledge-base
+        </Anchor>
+        <Text mt="md">Chatbot Interface:</Text>
+        <Anchor
+          href="https://github.com/edwardduong71311/hb-fe"
+          target="_blank"
+        >
+          https://github.com/edwardduong71311/hb-fe
+        </Anchor>
+        <Text mt="md">Chatbot Logic:</Text>
+        <Anchor
+          href=" https://github.com/edwardduong71311/hb-be"
+          target="_blank"
+        >
+          https://github.com/edwardduong71311/hb-be
+        </Anchor>
+      </Paper>
+      <Paper withBorder radius="md" className={classes.card}>
+        <pre>{`• Understand some basic intentions.
+• Provide advices base on symptoms.
+• Know how to query for more information.
+• Summarize the conversation.`}</pre>
+        <br />
+        <video
+          ref={videoRef}
+          controls
+          className="min-w-[400px] max-w-[600px]"
+        />
+      </Paper>
     </div>
   );
 }

@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+img {
+  object-position: center top;
+}
+
+video {
+  border-radius: 3px;
+}
