@@ -9,6 +9,7 @@ import {
   MantineProvider,
 } from "@mantine/core";
 import { theme } from "@/theme/config";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleTagManager gtmId="G-BWEX7K3VEF" />
         <MantineProvider theme={theme} forceColorScheme="dark">
           {children}
         </MantineProvider>

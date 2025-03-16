@@ -10,18 +10,38 @@ import {
 } from "@tabler/icons-react";
 
 import classes from "./page.module.css";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      const video = videoRef.current;
+    const video = videoRef.current;
+
+    const handlePlay = () => {
+      sendGTMEvent({ event: "PLAY", value: "record_1" });
+    };
+
+    const handlePause = () => {
+      sendGTMEvent({ event: "PAUSE", value: "record_1" });
+    };
+
+    if (video && videoRef.current) {
       const hls = new Hls();
 
       hls.loadSource("/logs/record_1/record_1.m3u8");
       hls.attachMedia(video);
+
+      videoRef.current.addEventListener("play", handlePlay);
+      videoRef.current.addEventListener("pause", handlePause);
     }
+
+    return () => {
+      if (video && videoRef.current) {
+        videoRef.current.removeEventListener("play", handlePlay);
+        videoRef.current.removeEventListener("pause", handlePause);
+      }
+    };
   }, []);
 
   return (
