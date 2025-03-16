@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react";
 
 import classes from "./page.module.css";
-import { sendGTMEvent } from "@next/third-parties/google";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -19,11 +19,11 @@ export default function Home() {
     const video = videoRef.current;
 
     const handlePlay = () => {
-      sendGTMEvent({ event: "PLAY", value: "record_1" });
+      sendGAEvent("event", "PLAY", { value: "record_1" });
     };
 
     const handlePause = () => {
-      sendGTMEvent({ event: "PAUSE", value: "record_1" });
+      sendGAEvent("event", "PAUSE", { value: "record_1" });
     };
 
     if (video && videoRef.current) {
