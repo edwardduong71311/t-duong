@@ -78,6 +78,7 @@ export default function Home() {
         className={`${classes.card} ${classes.effect}`}
       >
         <ThemeIcon
+          size="xl"
           radius="md"
           variant="gradient"
           gradient={{ deg: 0, from: "blue", to: "green" }}
@@ -87,7 +88,7 @@ export default function Home() {
         <Text size="xl" fw={500} mt="md">
           Where am I?
         </Text>
-        <pre className="max-w-[800px] text-pretty">{`In the world of code, we are always in search of our next destination. But where? For me, it's through the challenges we solve, the systems we build, and the impact we create that we truly understand our place in this ever-evolving tech landscape.`}</pre>
+        <pre className="text-pretty text-wrap break-words">{`In the world of code, we are always in search of our next destination. But where? For me, it's through the challenges we solve, the systems we build, and the impact we create that we truly understand our place in this ever-evolving tech landscape.`}</pre>
       </Paper>
       <Paper
         withBorder
@@ -105,7 +106,7 @@ export default function Home() {
         <Text size="xl" fw={500} mt="md">
           What is next?
         </Text>
-        <pre className="max-w-[800px] text-pretty">{`The future of convenience lies in the hands of those who dare to shape intelligent machines. By learning AI, we unlock the power to create robots that will not only lighten our workload but revolutionize the way we live, one task at a time.`}</pre>
+        <pre className="text-pretty text-wrap break-words">{`The future of convenience lies in the hands of those who dare to shape intelligent machines. By learning AI, we unlock the power to create robots that will not only lighten our workload but revolutionize the way we live, one task at a time.`}</pre>
       </Paper>
       <Paper withBorder radius="md" className={classes.card}>
         <ThemeIcon
@@ -119,7 +120,7 @@ export default function Home() {
         <Text size="xl" fw={500} mt="md">
           Health Buddy
         </Text>
-        <pre className="max-w-[800px] text-pretty">{`Empowering health through technology: Health Buddy bridges the gap between symptoms and care, providing users with a smart virtual agent that understands their needs and helps them take the next step toward wellness.`}</pre>
+        <pre className="text-pretty text-wrap break-words">{`Empowering health through technology: Health Buddy bridges the gap between symptoms and care, providing users with a smart virtual agent that understands their needs and helps them take the next step toward wellness.`}</pre>
         <Text mt="md">Manage hospital:</Text>
         <Anchor
           href="https://github.com/edwardduong71311/hb-hospital-mgmt"
