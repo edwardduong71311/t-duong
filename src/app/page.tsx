@@ -45,7 +45,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3 items-center py-4">
+    <div className="flex flex-col gap-3 items-center p-4 xs:p-2">
       <Paper radius="md" withBorder p="lg" bg="var(--mantine-primary-color)">
         <Avatar src="/avatar.jpeg" size={120} radius={120} mx="auto" />
 
@@ -78,7 +78,6 @@ export default function Home() {
         className={`${classes.card} ${classes.effect}`}
       >
         <ThemeIcon
-          size="xl"
           radius="md"
           variant="gradient"
           gradient={{ deg: 0, from: "blue", to: "green" }}
@@ -151,16 +150,12 @@ export default function Home() {
         </Anchor>
       </Paper>
       <Paper withBorder radius="md" className={classes.card}>
-        <pre>{`• Understand some basic intentions.
+        <pre className="text-wrap break-words">{`• Understand some basic intentions.
 • Provide advices base on symptoms.
 • Know how to query for more information.
 • Summarize the conversation.`}</pre>
         <br />
-        <video
-          ref={videoRef}
-          controls
-          className="min-w-[400px] max-w-[600px]"
-        />
+        <video ref={videoRef} controls className="w-full " />
       </Paper>
     </div>
   );
