@@ -3,8 +3,10 @@
   cursor: pointer;
   overflow: hidden;
   transition: transform 150ms ease, box-shadow 100ms ease;
-  padding: var(--mantine-spacing-xl);
-  padding-left: calc(var(--mantine-spacing-xl) * 2);
+  padding: 0.3em;
+  padding-left: calc(0.3em * 3);
+  width: 100%;
+  max-width: 600px;
 
   @mixin hover {
     box-shadow: var(--mantine-shadow-md);
@@ -25,5 +27,11 @@
       var(--mantine-color-blue-6),
       var(--mantine-color-green-6)
     );
+  }
+}
+
+@media (width >= 40rem) {
+  .card {
+    padding: 2em;
   }
 }
